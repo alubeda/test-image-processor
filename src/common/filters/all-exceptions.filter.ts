@@ -17,8 +17,14 @@ export class AllExceptionsFilter implements ExceptionFilter {
         const response = ctx.getResponse<Response>()
         const request = ctx.getRequest<Request>()
 
-        const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR
-        const message = exception instanceof HttpException ? exception.message : 'Internal server error'
+        const status =
+            exception instanceof HttpException
+                ? exception.getStatus()
+                : HttpStatus.INTERNAL_SERVER_ERROR
+        const message =
+            exception instanceof HttpException
+                ? exception.message
+                : 'Internal server error'
 
         this.logger.error(
             `Status: ${status}, Path: ${request.url}, Message: ${message}`,
