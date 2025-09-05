@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { WinstonModule } from 'nest-winston'
 import { getWinstonConfig } from './config/winston.config'
+import { TasksModule } from './tasks/tasks.module'
 
 @Module({
     imports: [
@@ -13,8 +12,7 @@ import { getWinstonConfig } from './config/winston.config'
             useFactory: getWinstonConfig,
             inject: [ConfigService],
         }),
+        TasksModule,
     ],
-    controllers: [AppController],
-    providers: [AppService],
 })
 export class AppModule {}
