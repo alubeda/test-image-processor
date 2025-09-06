@@ -1,7 +1,7 @@
-import { IsString, IsNotEmpty, IsOptional, ValidateIf } from 'class-validator'
+import { IsString, IsNotEmpty } from 'class-validator'
 
 export class CreateTaskDto {
     @IsString()
     @IsNotEmpty()
-    imagePath: string
+    originalPath: string
 }

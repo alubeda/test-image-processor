@@ -16,12 +16,11 @@ export class TasksController {
 
     @Post()
     create(@Body() createTaskDto: CreateTaskDto) {
-        console.warn({ createTaskDto })
         return this.tasksService.create(createTaskDto)
     }
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.tasksService.findOne(+id)
+        return this.tasksService.findOne(id)
     }
 }

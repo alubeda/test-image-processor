@@ -1,98 +1,97 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🖼️ test-image-processor
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+`test-image-processor` is a backend service built with [NestJS](https://nestjs.com/).
+Its main purpose is to **generate scaled versions of input images** provided by the user, making it useful for media pipelines that require thumbnails, previews, or multiple resolutions of the same file.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Requirements
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Node.js](https://nodejs.org/) 18 LTS or higher
+- [npm] Installed with Node.js
+- [Docker](https://www.docker.com/) for containerized execution and dependencies
 
-## Project setup
+---
+
+## Running the application
+
+### 1. Clone the repository
 
 ```bash
-$ npm install
+git clone https://github.com/alubeda/test-image-processor.git
+cd test-image-processor
 ```
 
-## Compile and run the project
+### 2. Install dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 3. Start MongoDB (using Docker)
+Make sure Docker daemon is running on Linux/macOS, or Docker Desktop on Windows.
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run db:up
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 4. Start the NestJS server
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+The application will run on `http://localhost:3000`.
 
-## Resources
+## Example usage
 
-Check out a few resources that may come in handy when working with NestJS:
+### Create a new task
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+**Request**
 
-## Support
+```bash
+POST /tasks
+Content-Type: application/json
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```json
+{
+  "originalPath": "https://example.com/image1.jpg"
+}
+```
 
-## Stay in touch
+**Response**
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```json
+{
+    "_id": "61e0a0f8c0b0c1e7a4f0e2e1",
+    "status": "pending",
+    "price": 25.5,
+    "originalPath": "https://example.com/image1.jpg",
+    "images": []
+}
+```
 
-## License
+## 📜 Npm Scripts
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+* `npm run start:dev`: Starts the application in development mode.
+* `npm run build`: Compiles the TypeScript code to JavaScript.
+* `npm run start:prod`: Starts the compiled application in production mode.
+
+---
+
+## 📝 Code Style
+
+This project uses **Prettier** to maintain a consistent code format. All commits follow the **Conventional Commits** convention.
+
+---
+
+## Design Decisions
+
+* **NestJS**: Chosen for its structure, modularity, and focus on clean architecture and dependency injection. It facilitates the creation of large-scale, maintainable applications.
+* **TypeScript**: Provides static typing, which reduces development-time errors and improves code readability.
+* **MongoDB**: A document-based database was chosen to offer schema flexibility, which is ideal for a project in its initial phase.
+* **Docker for MongoDB**: Instead of installing MongoDB manually on the host machine, a containerized MongoDB instance is used. This approach improves developer experience, simplifies setup across environments, and avoids polluting the host system.
+* **Centralized Error Handling**: Instead of using multiple `try...catch` blocks, a global **Exception Filter** was implemented. This ensures that all error responses to clients have a consistent format.
+* **`nest-winston`**: This library was used to centralize logs, allowing them to be saved in structured files (JSON) for easy monitoring and analysis.
+* **`Conventional Commits`**: A standardized commit style is used to maintain a clean and understandable Git history, which facilitates change tracking and automation.
