@@ -80,6 +80,21 @@ Content-Type: application/json
 
 ---
 
+## Database Initialization
+
+For convenience, the project includes a script to seed initial data into MongoDB.
+This can be useful for local development and testing.
+
+### Run the script
+
+```bash
+npm run seed
+```
+
+This command will connect to the MongoDB instance and insert predefined documents into the database.
+
+---
+
 ## 📝 Code Style
 
 This project uses **Prettier** to maintain a consistent code format. All commits follow the **Conventional Commits** convention.

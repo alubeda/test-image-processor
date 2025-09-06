@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "db:seed": "ts-node -r tsconfig-paths/register src/scripts/seed.ts",
     "db:up": "docker-compose up -d",
     "db:down": "docker-compose down",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
